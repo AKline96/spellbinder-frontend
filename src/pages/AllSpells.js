@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/Home.css";
+import "../styles/AllSpells.css";
 import spells from "../data/spells.json";
 
 const AllSpells = () => {
@@ -21,7 +21,7 @@ const AllSpells = () => {
     }
 
     return (
-        <div className="split-container">
+        <div className="split-container" id="allspells">
             <div className="left-section">
                 {levelGroups.map((levelGroup, index) => (
                     <LevelGroup
@@ -73,13 +73,14 @@ const LevelGroup = ({ levelNum, spellArray, setDetails }) => {
                     <ul>
                         {spellArray.map((spell) => {
                             return (
-                                <li
+                                <div
+                                    className="card"
                                     onClick={() => {
                                         setDetails(spell);
                                     }}
                                 >
                                     {spell.name}
-                                </li>
+                                </div>
                             );
                         })}
                     </ul>

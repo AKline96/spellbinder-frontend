@@ -7,20 +7,32 @@ import Welcome from "./pages/Welcome.js";
 import Nav from "./components/Nav.js";
 import WizardInfo from "./components/WizardInfo.js";
 import AllSpells from "./pages/AllSpells.js";
+import Layout from "./components/Layout.js";
 
 const myRoutes = createBrowserRouter([
     {
-        path: "/home",
-        element: <Home />,
+        path: "/",
+        element: <Layout />,
+        children: [
+            {
+                path: "/home",
+                element: <Home />,
+            },
+            {
+                path: "/newWizard",
+                element: <NewWizard />,
+            },
+            {
+                path: "/viewWizard/:id",
+                element: <WizardInfo />,
+            },
+            {
+                path: "/allSpells",
+                element: <AllSpells />,
+            },
+        ],
     },
-    {
-        path: "/newWizard",
-        element: <NewWizard />,
-    },
-    {
-        path: "/viewWizard/:id",
-        element: <WizardInfo />,
-    },
+
     {
         path: "/login",
         element: <Login />,
@@ -32,10 +44,6 @@ const myRoutes = createBrowserRouter([
     {
         path: "/nav",
         element: <Nav />,
-    },
-    {
-        path: "/allSpells",
-        element: <AllSpells />,
     },
 ]);
 
