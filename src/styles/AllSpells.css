@@ -1,28 +1,25 @@
-#allspells {
-    .split-container {
-        display: flex;
-        height: calc(100vh - 150px);
-        margin-top: 20px;
-    }
-    .left-section,
-    .right-section {
-        flex: 1;
-        padding: 20px;
-        border: 1px solid #dee2e6;
-        background-color: #ffffff;
-        margin: 10px;
-        height: 100vh;
-    }
-    .list-group-item {
-        cursor: pointer;
-    }
+.split-container {
+    display: flex;
+    height: calc(100vh - 150px);
+    margin-top: 20px;
 }
-.card {
+.left-section,
+.right-section {
     flex: 1;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #dee2e6;
     background-color: #ffffff;
     margin: 10px;
+    height: 100vh;
+}
+.list-group-item {
+    cursor: pointer;
+}
+
+.card {
+    flex: 1;
+    padding: 10px;
+    background-color: #ffffff;
 }
 .custom-link {
     color: black;
