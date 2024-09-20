@@ -31,3 +31,8 @@
     text-decoration: none;
     font-weight: bold;
 }
+
+.btn,
+.btn-primary {
+    margin: 10px;
+}

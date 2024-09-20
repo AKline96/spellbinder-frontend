@@ -40,16 +40,9 @@ function WizardInfo() {
         <div className="container mt-5">
             {wizard ? (
                 <div>
-                    <p>
-                        <strong>Name:</strong> {wizard.name}
-                    </p>
-                    <p>
-                        <strong>Intelligence:</strong>{" "}
-                        {wizard.intelligence_score}
-                    </p>
-                    <p>
-                        <strong>Level:</strong> {wizard.level}
-                    </p>
+                    <h2>
+                        {wizard.name}, Level {wizard.level} Wizard
+                    </h2>
                     <AllSpells />
                 </div>
             ) : (

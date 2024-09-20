@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/Home.css";
 import spells from "../data/spells.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home2 = () => {
     const [wizard, setWizard] = useState({
@@ -26,6 +26,12 @@ const Home2 = () => {
 
         fetchWizardData();
     }, []); // Rerun the effect when the id changes
+
+    const navigate = useNavigate();
+
+    const handleNewWizard = () => {
+        navigate("/newwizard"); // Replace with the correct path for your NewWizard page
+    };
 
     const addSpellToLevelGroup = (spells, levelNum, levelGroup = []) => {
         spells.forEach((spell) => {
@@ -57,6 +63,9 @@ const Home2 = () => {
                     </div>
                 );
             })}
+            <button onClick={handleNewWizard} className="btn btn-primary">
+                Create New Wizard
+            </button>
         </div>
     );
 };

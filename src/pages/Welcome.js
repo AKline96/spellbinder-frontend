@@ -18,7 +18,8 @@ const Welcome = () => {
                     Your magical journey starts here, young wizard. Explore and
                     unleash your potential.
                 </p>
-                <Link to="/login">Log In</Link>
+                <Link to="/login">Log In</Link> |{" "}
+                <Link to="/signup">Sign Up</Link>
             </div>
         </div>
     );

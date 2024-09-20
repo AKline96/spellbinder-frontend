@@ -1,9 +1,32 @@
 import { useState, useEffect } from "react";
 import "../styles/AllSpells.css";
-import spells from "../data/spells.json";
+import { useParams } from "react-router-dom";
 
 const AllSpells = () => {
+    const [spells, setSpells] = useState([]);
     const [details, setDetails] = useState("Select a spell to see details.");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchSpells = async () => {
+            try {
+                const response = await fetch("http://localhost:3001/spells");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setSpells(data);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchSpells();
+    }, []);
+
     const addSpellToLevelGroup = (spells, levelNum, levelGroup = []) => {
         spells.forEach((spell) => {
             if (spell.level === levelNum) {
@@ -12,13 +35,15 @@ const AllSpells = () => {
         });
         return levelGroup;
     };
-    const levelGroups = [];
 
-    // Populate each LevelGroup based on the levelNum
+    const levelGroups = [];
     for (let levelNum = 0; levelNum <= 9; levelNum++) {
         const levelGroup = addSpellToLevelGroup(spells, levelNum);
         levelGroups.push(levelGroup);
     }
+
+    if (loading) return <p>Loading spells...</p>;
+    if (error) return <p>Error fetching spells: {error}</p>;
 
     return (
         <div className="split-container" id="allspells">
@@ -33,18 +58,32 @@ const AllSpells = () => {
                 ))}
             </div>
             <div className="right-section">
-                <div></div>
                 <div id="details">
-                    <h2>Spell: {details.name}</h2>
-                    <h5>School: {details.school}</h5>
-                    <h5>Casting Time: {details.casting_time}</h5>
-                    <h5>Range: {details.range}</h5>
-                    <h5>Components: {details.components}</h5>
-                    <h5>Duration: {details.duration}</h5>
+                    <h2>{details.name}</h2>
                     <h5>
-                        Description:
-                        <br /> {details.description}
+                        <u>School:</u>
                     </h5>
+                    {details.school}
+                    <h5>
+                        <u>Casting Time:</u>
+                    </h5>{" "}
+                    {details.casting_time}
+                    <h5>
+                        <u>Range:</u>
+                    </h5>{" "}
+                    {details.range}
+                    <h5>
+                        <u>Components:</u>
+                    </h5>{" "}
+                    {details.components}
+                    <h5>
+                        <u>Duration:</u>
+                    </h5>{" "}
+                    {details.duration}
+                    <h5>
+                        <u>Description:</u>
+                    </h5>{" "}
+                    {details.description}
                 </div>
             </div>
         </div>
@@ -53,6 +92,7 @@ const AllSpells = () => {
 
 const LevelGroup = ({ levelNum, spellArray, setDetails }) => {
     const [expanded, setExpanded] = useState(false);
+
     return (
         <div className="card">
             <div className="card-body">
@@ -71,18 +111,17 @@ const LevelGroup = ({ levelNum, spellArray, setDetails }) => {
                 </h2>
                 {expanded && (
                     <ul>
-                        {spellArray.map((spell) => {
-                            return (
-                                <div
-                                    className="card"
-                                    onClick={() => {
-                                        setDetails(spell);
-                                    }}
-                                >
-                                    {spell.name}
-                                </div>
-                            );
-                        })}
+                        {spellArray.map((spell) => (
+                            <div
+                                className="card"
+                                key={spell.id} // Ensure each spell has a unique key
+                                onClick={() => {
+                                    setDetails(spell);
+                                }}
+                            >
+                                {spell.name}
+                            </div>
+                        ))}
                     </ul>
                 )}
             </div>

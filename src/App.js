@@ -8,6 +8,7 @@ import Nav from "./components/Nav.js";
 import WizardInfo from "./components/WizardInfo.js";
 import AllSpells from "./pages/AllSpells.js";
 import Layout from "./components/Layout.js";
+import SignUp from "./pages/SignUp.js";
 
 const myRoutes = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const myRoutes = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <SignUp />,
     },
     {
         path: "/",

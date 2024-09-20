@@ -3,7 +3,11 @@
     height: calc(100vh - 150px);
     margin-top: 20px;
 }
-.left-section,
+.left-section {
+    flex: 1;
+    background-color: #ffffff;
+    height: 100vh;
+}
 .right-section {
     flex: 1;
     padding: 10px;
