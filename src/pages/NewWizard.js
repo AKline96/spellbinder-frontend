@@ -17,14 +17,17 @@ function NewWizard() {
         });
     };
 
+    const token = window.localStorage.getItem("token"); // Get the JWT token
+
     const onSubmit = async (e) => {
-        e.preventDefault(); // Prevents the default form submission
+        e.preventDefault();
         console.log("Wizard Information:", wizard);
         try {
             const response = await fetch(`http://localhost:3001/wizard`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, // Include the token
                 },
                 body: JSON.stringify(wizard),
             });
