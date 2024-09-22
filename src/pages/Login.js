@@ -21,18 +21,20 @@ const Login = () => {
                 body: JSON.stringify({ username, password }),
             });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                // Assuming you receive a success message or token
-                window.localStorage.setItem("loggedIn", "yes");
-                // Redirect
-                navigate("/newWizard");
-            } else {
-                setError(data.message); // Show error from server
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Login failed");
             }
+
+            const data = await response.json();
+            console.log(data); // Handle successful login response here
+
+            // Save the user data in local storage or state if needed
+            window.localStorage.setItem("loggedIn", "yes");
+            // Redirect
+            navigate("/newWizard");
         } catch (error) {
-            setError("An error occurred. Please try again.");
+            setError(error.message);
         }
     };
 

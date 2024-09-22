@@ -9,6 +9,7 @@ import WizardInfo from "./components/WizardInfo.js";
 import AllSpells from "./pages/AllSpells.js";
 import Layout from "./components/Layout.js";
 import SignUp from "./pages/SignUp.js";
+import ProtectedRoute from "./components/ProtectedRoutes.js";
 
 const myRoutes = createBrowserRouter([
     {
@@ -17,23 +18,38 @@ const myRoutes = createBrowserRouter([
         children: [
             {
                 path: "/home",
-                element: <Home />,
+                element: (
+                    <ProtectedRoute>
+                        <Home />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/newWizard",
-                element: <NewWizard />,
+                element: (
+                    <ProtectedRoute>
+                        <NewWizard />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/viewWizard/:id",
-                element: <WizardInfo />,
+                element: (
+                    <ProtectedRoute>
+                        <WizardInfo />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/allSpells",
-                element: <AllSpells />,
+                element: (
+                    <ProtectedRoute>
+                        <AllSpells />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
-
     {
         path: "/login",
         element: <Login />,
@@ -43,7 +59,7 @@ const myRoutes = createBrowserRouter([
         element: <SignUp />,
     },
     {
-        path: "/",
+        path: "/welcome",
         element: <Welcome />,
     },
     {
