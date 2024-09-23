@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Nav = () => {
     const navigate = useNavigate();

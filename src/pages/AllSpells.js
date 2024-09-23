@@ -7,6 +7,7 @@ const AllSpells = () => {
     const [details, setDetails] = useState("Select a spell to see details.");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { wizardId } = useParams();
 
     useEffect(() => {
         const fetchSpells = async () => {
@@ -84,6 +85,12 @@ const AllSpells = () => {
                         <u>Description:</u>
                     </h5>{" "}
                     {details.description}
+                </div>
+
+                <div>
+                    <button className="btn btn-primary">
+                        Learn this Spell
+                    </button>
                 </div>
             </div>
         </div>
