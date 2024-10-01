@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/AllSpells.css";
 import { useParams } from "react-router-dom";
 
-const AllSpells = () => {
+const AllSpells = ({ setKnownSpells }) => {
     const [spells, setSpells] = useState([]);
     const [details, setDetails] = useState("Select a spell to see details.");
     const [loading, setLoading] = useState(true);
@@ -35,6 +35,22 @@ const AllSpells = () => {
             }
         });
         return levelGroup;
+    };
+
+    const learnSpell = async () => {
+        const res = await fetch(`http://localhost:3001/learnSpell`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                wizardId,
+                spellId: details.id,
+            }),
+        });
+        const data = await res.json();
+        console.log(data);
+        setKnownSpells(data.knownSpells);
     };
 
     const levelGroups = [];
@@ -88,7 +104,7 @@ const AllSpells = () => {
                 </div>
 
                 <div>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={learnSpell}>
                         Learn this Spell
                     </button>
                 </div>

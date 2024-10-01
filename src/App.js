@@ -33,7 +33,7 @@ const myRoutes = createBrowserRouter([
                 ),
             },
             {
-                path: "/viewWizard/:id",
+                path: "/viewWizard/:wizardId",
                 element: (
                     <ProtectedRoute>
                         <WizardInfo />

@@ -4,7 +4,7 @@ import SpellList from "../components/SpellList"; // Import your new SpellList co
 import "../styles/Home.css";
 
 function WizardInfo() {
-    const { id } = useParams();
+    const { wizardId } = useParams();
     const [wizard, setWizard] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ function WizardInfo() {
         const fetchWizard = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:3001/wizard/${id}`
+                    `http://localhost:3001/wizard/${wizardId}`
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,7 +29,7 @@ function WizardInfo() {
         };
 
         fetchWizard();
-    }, [id]);
+    }, [wizardId]);
 
     if (loading) return <p>Loading wizard data...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -41,7 +41,7 @@ function WizardInfo() {
                     <h2>
                         {wizard.name}, Level {wizard.level} Wizard
                     </h2>
-                    <SpellList wizardId={wizard.id} />
+                    <SpellList />
                 </div>
             ) : (
                 <p>No wizard data available.</p>
