@@ -19,7 +19,7 @@ const Nav = () => {
             <nav className="text-center">
                 <NavLink to="/home">Wizards</NavLink> |{" "}
                 <NavLink to="/allspells">Spells</NavLink> |{" "}
-                <NavLink to="/AccountSettings">About</NavLink> |{" "}
+                {/* <NavLink to="/AccountSettings">About</NavLink> |{" "} */}
                 <button onClick={handleLogout}>Log Out</button>
             </nav>
         </div>
