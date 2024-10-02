@@ -1,7 +1,7 @@
 #home {
     .split-container {
         display: flex;
-        height: calc(
+        min-height: calc(
             100vh - 150px
         ); /* Adjust height based on header and navbar height */
         margin-top: 20px;
@@ -13,7 +13,7 @@
         border: 1px solid #dee2e6;
         background-color: #ffffff;
         margin: 10px;
-        height: 100vh;
+        min-height: 100vh;
     }
     .list-group-item {
         cursor: pointer;
@@ -23,7 +23,7 @@
     flex: 1;
     padding: 20px;
     border: 1px solid #dee2e6;
-    background-color: #ffffff;
+    background-color: #f6ecc6;
     margin: 10px;
 }
 .custom-link {

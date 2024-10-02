@@ -1,0 +1,12 @@
+.container {
+    min-height: 100vh;
+}
+.title {
+    font-family: "Allura", cursive;
+    font-size: 110px;
+}
+.tagline {
+    font-family: "Allura", cursive;
+    font-size: 30px;
+    font-weight: 150;
+}

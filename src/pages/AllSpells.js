@@ -74,8 +74,8 @@ const AllSpells = ({ setKnownSpells }) => {
                     />
                 ))}
             </div>
-            <div className="right-section">
-                <div id="details">
+            <div className="right-section card">
+                <div className="card-body" id="details">
                     <h2>{details.name}</h2>
                     <h5>
                         <u>School:</u>
@@ -101,9 +101,6 @@ const AllSpells = ({ setKnownSpells }) => {
                         <u>Description:</u>
                     </h5>{" "}
                     {details.description}
-                </div>
-
-                <div>
                     <button className="btn btn-primary" onClick={learnSpell}>
                         Learn this Spell
                     </button>

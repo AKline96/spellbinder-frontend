@@ -1,12 +1,12 @@
 .split-container {
     display: flex;
-    height: calc(100vh - 150px);
+    min-height: calc(100vh - 150px);
     margin-top: 20px;
 }
 .left-section {
     flex: 1;
     background-color: #ffffff;
-    height: 100vh;
+    min-height: 100vh;
 }
 .right-section {
     flex: 1;
@@ -14,7 +14,7 @@
     border: 1px solid #dee2e6;
     background-color: #ffffff;
     margin: 10px;
-    height: 100vh;
+    min-height: 100vh;
 }
 .list-group-item {
     cursor: pointer;
@@ -22,7 +22,7 @@
 
 .card {
     flex: 1;
-    padding: 10px;
+    padding: 5px;
     background-color: #ffffff;
 }
 .custom-link {

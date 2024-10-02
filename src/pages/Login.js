@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -39,8 +40,8 @@ const Login = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Login</h1>
+        <div className="container" id="login">
+            <h1 className="title">Login</h1>
             <form onSubmit={loginFormSubmitted}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">

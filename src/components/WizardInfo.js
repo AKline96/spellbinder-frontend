@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SpellList from "../components/SpellList"; // Import your new SpellList component
-import "../styles/Home.css";
+import "../styles/WizardInfo.css";
 
 function WizardInfo() {
     const { wizardId } = useParams();
@@ -38,7 +38,7 @@ function WizardInfo() {
         <div className="container mt-5">
             {wizard ? (
                 <div>
-                    <h2>
+                    <h2 className="wizardInfo">
                         {wizard.name}, Level {wizard.level} Wizard
                     </h2>
                     <SpellList />

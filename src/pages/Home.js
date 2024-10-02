@@ -50,7 +50,7 @@ const Home2 = () => {
     }
 
     return (
-        <div className="container" id="home">
+        <div className="" id="home">
             {allWizards.map((wizard) => {
                 return (
                     <div className="card">

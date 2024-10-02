@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Welcome.css";
 
 const Welcome = () => {
     const navigate = useNavigate();
@@ -13,8 +14,8 @@ const Welcome = () => {
     return (
         <div className="container d-flex justify-content-center align-items-center">
             <div className="text-center">
-                <h1>SpellBinder</h1>
-                <p>
+                <h1 className="title">SpellBinder</h1>
+                <p className="tagline">
                     Your magical journey starts here, young wizard. Explore and
                     unleash your potential.
                 </p>
