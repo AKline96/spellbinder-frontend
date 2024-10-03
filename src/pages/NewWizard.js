@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import "../styles/NewWizard.css";
 
 function NewWizard() {
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ function NewWizard() {
 
     return (
         <div className="container mt-5">
-            <h2>Create a New Wizard</h2>
+            <h2 className="allura-regular">Create a New Wizard</h2>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">

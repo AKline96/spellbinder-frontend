@@ -9,6 +9,36 @@ function WizardInfo() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Function to calculate the proficiency bonus
+    const calculateProficiencyBonus = (level) => {
+        if (level < 1) return 0; // No proficiency bonus for level 0 or below
+        else if (level <= 4) return 2;
+        else if (level <= 8) return 3;
+        else if (level <= 12) return 4;
+        else if (level <= 16) return 5;
+        else return 6;
+    };
+
+    // Function to calculate the spellcasting modifier
+    const calculateSpellcastingModifier = (intelligenceScore) => {
+        return Math.floor((intelligenceScore - 10) / 2);
+    };
+
+    // Function to calculate spell attack modifier and spell save DC
+    const calculateSpellModifiers = (wizard) => {
+        const intelligenceScore = wizard.intelligence_score;
+        const level = wizard.level;
+
+        const spellcastingModifier =
+            calculateSpellcastingModifier(intelligenceScore);
+        const proficiencyBonus = calculateProficiencyBonus(level);
+
+        const spellAttackModifier = spellcastingModifier + proficiencyBonus;
+        const spellSaveDC = 8 + spellcastingModifier + proficiencyBonus;
+
+        return { spellAttackModifier, spellSaveDC };
+    };
+
     useEffect(() => {
         const fetchWizard = async () => {
             try {
@@ -34,6 +64,11 @@ function WizardInfo() {
     if (loading) return <p>Loading wizard data...</p>;
     if (error) return <p>Error: {error}</p>;
 
+    // Calculate spell modifiers if the wizard data is available
+    const { spellAttackModifier, spellSaveDC } = wizard
+        ? calculateSpellModifiers(wizard)
+        : { spellAttackModifier: null, spellSaveDC: null };
+
     return (
         <div className="container mt-5">
             {wizard ? (
@@ -41,6 +76,19 @@ function WizardInfo() {
                     <h2 className="wizardInfo">
                         {wizard.name}, Level {wizard.level} Wizard
                     </h2>
+                    <p className="intelligenceScore">
+                        Intelligence: {wizard.intelligence_score}
+                    </p>
+                    <p className="spellModifier">
+                        Spellcasting Modifier:{" "}
+                        {calculateSpellcastingModifier(
+                            wizard.intelligence_score
+                        )}
+                    </p>
+                    <p className="attackModifier">
+                        Spell Attack Modifier: {spellAttackModifier}
+                    </p>
+                    <p className="spellSave">Spell Save DC: {spellSaveDC}</p>
                     <SpellList />
                 </div>
             ) : (

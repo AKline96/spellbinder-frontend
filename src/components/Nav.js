@@ -6,11 +6,15 @@ const Nav = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // 1. Remove the 'loggedIn' item from localStorage to log the user out
-        window.localStorage.removeItem("loggedIn");
+        // 1. Confirm logout
+        const confirmed = window.confirm("Are you sure you want to log out?");
+        if (confirmed) {
+            // 2. Remove the 'loggedIn' item from localStorage to log the user out
+            window.localStorage.removeItem("loggedIn");
 
-        // 2. Navigate the user to the welcome or login page
-        navigate("/welcome");
+            // 3. Navigate the user to the welcome or login page
+            navigate("/welcome");
+        }
     };
     return (
         <div className="">

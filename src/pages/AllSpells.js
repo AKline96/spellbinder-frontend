@@ -101,6 +101,7 @@ const AllSpells = ({ setKnownSpells }) => {
                         <u>Description:</u>
                     </h5>{" "}
                     {details.description}
+                    <br></br>
                     <button className="btn btn-primary" onClick={learnSpell}>
                         Learn this Spell
                     </button>
@@ -138,6 +139,7 @@ const LevelGroup = ({ levelNum, spellArray, setDetails }) => {
                                 onClick={() => {
                                     setDetails(spell);
                                 }}
+                                style={{ cursor: "pointer" }}
                             >
                                 {spell.name}
                             </div>

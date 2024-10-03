@@ -33,6 +33,39 @@ const Home2 = () => {
         navigate("/newwizard"); // Replace with the correct path for your NewWizard page
     };
 
+    const handleDeleteWizard = async (id) => {
+        // Show confirmation dialog
+        const isConfirmed = window.confirm(
+            "Are you sure you want to delete this wizard?"
+        );
+
+        if (isConfirmed) {
+            try {
+                const response = await fetch(
+                    `http://localhost:3001/wizard/${id}`,
+                    {
+                        method: "DELETE",
+                    }
+                );
+
+                if (response.ok) {
+                    const updatedResponse = await fetch(
+                        `http://localhost:3001/wizard`
+                    );
+                    const updatedData = await updatedResponse.json();
+                    setAllWizards(updatedData.wizard);
+                } else {
+                    console.error(
+                        "Error deleting wizard:",
+                        response.statusText
+                    );
+                }
+            } catch (error) {
+                console.error("Error deleting wizard:", error);
+            }
+        }
+    };
+
     const addSpellToLevelGroup = (spells, levelNum, levelGroup = []) => {
         spells.forEach((spell) => {
             if (spell.level === levelNum) {
@@ -59,6 +92,16 @@ const Home2 = () => {
                             to={`/viewWizard/${wizard.id}`}
                         >
                             {wizard.name}, Level {wizard.level}
+                            <button
+                                className="btn btn-danger"
+                                style={{ float: "right" }}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    handleDeleteWizard(wizard.id);
+                                }}
+                            >
+                                Delete Wizard
+                            </button>
                         </Link>
                     </div>
                 );

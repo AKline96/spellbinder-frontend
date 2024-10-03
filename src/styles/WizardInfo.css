@@ -4,3 +4,11 @@
     font-style: normal;
     font-size: 50px;
 }
+.spellModifier,
+.attackModifier,
+.spellSave,
+.intelligenceScore {
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+}

@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import AllSpells from "../pages/AllSpells";
 import { useParams } from "react-router-dom";
 
-const SpellList = ({}) => {
+const SpellList = () => {
     const [allSpells, setAllSpells] = useState([]);
     const [knownSpells, setKnownSpells] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { wizardId } = useParams();
-    const [expanded, setExpanded] = useState(false);
-
     useEffect(() => {
         if (!wizardId) {
             setLoading(false); // Stop loading if no wizardId is provided
@@ -109,7 +107,7 @@ const SpellList = ({}) => {
             <div className="card">
                 <h4>Known Spells</h4>
                 <div className="left-section">
-                    <div className="card-body">
+                    <div className="card-body" style={{ cursor: "pointer" }}>
                         {levelGroups.map((levelGroup, index) => (
                             <LevelGroup
                                 key={index}
